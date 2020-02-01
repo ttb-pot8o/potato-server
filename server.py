@@ -5,7 +5,7 @@ import logging
 import json
 import signal
 import sys
-import os
+# import os
 # import time
 # import threading
 # import traceback
@@ -13,8 +13,11 @@ import urllib
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from socketserver import ThreadingMixIn
 import coloredlogs
+import redis
 
-SERVE_PORT = 3000
+
+HTTP_PORT = 3000
+REDIS_PORT = 3002
 
 
 class Server(BaseHTTPRequestHandler):
@@ -150,17 +153,10 @@ class Server(BaseHTTPRequestHandler):
             As yet undocumented: SOP Buster is a workaround for the Same Origin
                 Policy
         '''
-        # import magic
-        # mime = magic.Magic(mime=True)
         pathobj = urllib.parse.urlparse(self.path)
         want    = pathobj.path[1:]
-        # qs      = urllib.parse.parse_qs(pathobj.query)
-        # is_csop = "url" in qs and qs["url"] and qs["url"][0]
 
-        allowed_paths = []  # os.listdir("dist/web")
-
-        #  if cpath == "":
-        #      cpath = "index.html"
+        # allowed_paths = []  # os.listdir("dist/web")
 
         if want == "data":
             self.set_headers(
@@ -178,21 +174,9 @@ class Server(BaseHTTPRequestHandler):
                 # heightmap:  [ ... ]
             })
 
-        # if want in allowed_paths:  # or cpath.endswith("livesplit.js"):
-
-        # if not os.path.exists(want):
-        #     self.set_headers(500)
-        #     self.write_json_error("Server bug found!")
-        # self.set_headers(
-        #   200,
-        #   headers=(["Content-Type", mime.from_file(get_path)],)
-        # )
-        # with open(get_path, "rb") as filename:
-        #     self.wfile.write(filename.read())
-
         else:
             self.set_headers(404)
-            self.write_json_error("HTTP/1.1 GET 404 Not Found")
+            self.write_json_error(f"GET {want} 404 Not Found")
 
     def do_OPTIONS(self):
         '''
@@ -213,8 +197,8 @@ class Server(BaseHTTPRequestHandler):
             headers=(
                 (
                     "Access-Control-Allow-Headers",
-                    "Content-Type, Access-Control-Allow-Headers, Origin, " +
-                    "Content-Length, Date, X-Unix-Epoch, Host, Connection"
+                    "Content-Type, Access-Control-Allow-Headers, Origin, "
+                    + "Content-Length, Date, X-Unix-Epoch, Host, Connection"
                 ),
             )
         )
@@ -225,14 +209,17 @@ class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
 
 
 def run(
-    server_class=ThreadedHTTPServer,
-    handler_class=Server,
-    port=SERVE_PORT  # api_helper.LOCAL_PORT
-  ):
-    server_address = ("", port)
-    httpd = server_class(server_address, handler_class)
+        server_class=ThreadedHTTPServer,
+        handler_class=Server,
+        http_port=HTTP_PORT,
+        redis_port=REDIS_PORT):  # api_helper.LOCAL_PORT
 
-    logger.info("Starting HTTP on port {}...".format(port))
+    http_address = ("", http_port)
+    httpd = server_class(http_address, handler_class)
+
+    redisd = redis.Redis(host='localhost', port=redis_port, db=0)
+
+    logger.info("Starting HTTP on port {}...".format(http_port))
 
     httpd.serve_forever()
 
@@ -243,7 +230,7 @@ def main():
     logger.info("=== STARTING ===")
 
     if len(argv) == 2:
-        run(port=int(argv[1]))
+        run(http_port=int(argv[1]))
     else:
         run()
 

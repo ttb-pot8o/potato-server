@@ -1,0 +1,4 @@
+coloredlogs==10.0
+humanfriendly==4.18
+pkg-resources==0.0.0
+redis==3.4.0
