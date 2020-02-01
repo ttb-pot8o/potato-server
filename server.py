@@ -200,16 +200,9 @@ class Server(BaseHTTPRequestHandler):
                 200,
                 headers=(["Content-Type", "application/json"],)
             )
-            self.write_json({
-                "volume": 600,  # ml
-                "mass": 240,    # g
-                "introduced": {
-                    "time": 1580563258,
-                    "place": 11
-                },
-                # dimensions: [ 4, 2 ]
-                # heightmap:  [ ... ]
-            })
+
+            with open("data/test.json", "r") as j:
+                self.write_str(j.read())
 
         else:
             self.set_headers(404)
