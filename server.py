@@ -16,8 +16,13 @@ import coloredlogs
 import redis
 
 
-HTTP_PORT = 3000
-REDIS_PORT = 3002
+HTTP_PORT  = 9000
+REDIS_PORT = 6379
+ALLOW_FRONTEND_DOMAINS = [
+    "http://localhost:" + str(HTTP_PORT),
+    "http://localhost:3000",
+    "http://ttb-pot8o.github.io/potato-id"
+]
 
 
 class Server(BaseHTTPRequestHandler):
@@ -26,6 +31,30 @@ class Server(BaseHTTPRequestHandler):
     '''
 
     protocol_version = "HTTP/1.1"
+
+    def enable_dynamic_cors(self):
+        '''
+            Arguments:  none
+            Returns:    None
+            Throws:     KeyError if the remote end never sent an Origin header.
+            Effects:    Sends to the remote end a dynamically generated ACAO
+                        header or none at all.
+
+            A trick needed to allow CORS from multiple, but not just any, other
+            domains.
+
+            The Access-Control-Allow-Origin header can only have one domain as
+            its value, so we test if the remote origin is allowed instead, and
+            send it back as the ACAO value.
+
+            If the remote origin isn't allowed, no ACAO header is sent, and
+            we assume the client implementation will enforce the same-origin
+            policy in that case (it's okay if this assumption falls through).
+        '''
+        http_origin = self.headers["origin"]
+        print(http_origin)
+        if http_origin in ALLOW_FRONTEND_DOMAINS:
+            self.send_header("Access-Control-Allow-Origin", http_origin)
 
     def write_str(self, data):
         '''
@@ -116,6 +145,11 @@ class Server(BaseHTTPRequestHandler):
             for h in headers:
                 self.send_header(*h)
 
+        if csop:
+            self.send_header("Access-Control-Allow-Origin", "*")
+        else:
+            self.enable_dynamic_cors()
+
         self.send_header("Connection", ["keep-alive", "Close"][close] )
 
         self.send_header(
@@ -153,12 +187,15 @@ class Server(BaseHTTPRequestHandler):
             As yet undocumented: SOP Buster is a workaround for the Same Origin
                 Policy
         '''
-        pathobj = urllib.parse.urlparse(self.path)
-        want    = pathobj.path[1:]
+        url  = urllib.parse.urlparse(self.path)
+        endpoint = url.path[1:]
 
-        # allowed_paths = []  # os.listdir("dist/web")
+        if endpoint == "favicon.ico":
+            self.set_headers(200, headers=(["Content-Type", "image/x-icon"],))
+            with open("favicon.ico", "rb") as icon:
+                self.wfile.write(icon.read())
 
-        if want == "data":
+        elif endpoint == "data":
             self.set_headers(
                 200,
                 headers=(["Content-Type", "application/json"],)
@@ -176,7 +213,7 @@ class Server(BaseHTTPRequestHandler):
 
         else:
             self.set_headers(404)
-            self.write_json_error(f"GET {want} 404 Not Found")
+            self.write_json_error(f"GET /{endpoint}: 404 Not Found")
 
     def do_OPTIONS(self):
         '''
@@ -220,6 +257,7 @@ def run(
     redisd = redis.Redis(host='localhost', port=redis_port, db=0)
 
     logger.info("Starting HTTP on port {}...".format(http_port))
+
 
     httpd.serve_forever()
 

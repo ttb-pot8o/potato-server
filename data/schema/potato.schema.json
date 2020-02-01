@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "potato",
+  "title": "An identifiable Potato object",
+  "description": "",
+
+  "definitions": {},
+
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "evident": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mass": { "type": "number" },
+        "volume": { "type": "number" },
+        "introduced": {
+          "where": { "type": "number" },
+          "where": { "type": "number" }
+        },
+        "3d": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "image": { "type": "string" },
+            "heightmap": { "type": "string" }
+          }
+        }
+      }
+    },
+
+    "emergent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "density": { "type": "number" },
+        "variety": { "type": "string", "enum": ["R", "W", "Y", "U", "F", "Q", "S"] },
+        "color": { "type": ["string", "null"] },
+        "size": { "type": "string", "enum": ["C", "A", "B", "E", "S", "M", "L"] },
+        "grade": { "type": "string", "enum": ["1", "C", "2", "3"] }
+      }
+    }
+  }
+}
