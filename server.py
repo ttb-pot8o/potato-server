@@ -21,7 +21,7 @@ REDIS_PORT = 6379
 ALLOW_FRONTEND_DOMAINS = [
     "http://localhost:" + str(HTTP_PORT),
     "http://localhost:3000",
-    "http://ttb-pot8o.github.io/potato-id"
+    "https://ttb-pot8o.github.io"
 ]
 
 
@@ -52,7 +52,7 @@ class Server(BaseHTTPRequestHandler):
             policy in that case (it's okay if this assumption falls through).
         '''
         http_origin = self.headers["origin"]
-        # print(http_origin)
+        print(http_origin)
         if http_origin in ALLOW_FRONTEND_DOMAINS:
             self.send_header("Access-Control-Allow-Origin", http_origin)
 
