@@ -52,7 +52,7 @@ class Server(BaseHTTPRequestHandler):
             policy in that case (it's okay if this assumption falls through).
         '''
         http_origin = self.headers["origin"]
-        print(http_origin)
+        # print(http_origin)
         if http_origin in ALLOW_FRONTEND_DOMAINS:
             self.send_header("Access-Control-Allow-Origin", http_origin)
 
@@ -188,25 +188,52 @@ class Server(BaseHTTPRequestHandler):
                 Policy
         '''
         url  = urllib.parse.urlparse(self.path)
+        # lose the leading `/` slash
         endpoint = url.path[1:]
 
-        if endpoint == "favicon.ico":
+        def _favicon():
             self.set_headers(200, headers=(["Content-Type", "image/x-icon"],))
             with open("favicon.ico", "rb") as icon:
                 self.wfile.write(icon.read())
 
-        elif endpoint == "data":
-            self.set_headers(
-                200,
-                headers=(["Content-Type", "application/json"],)
-            )
-
-            with open("data/test.json", "r") as j:
+        def _all():
+            self.set_headers(200,
+                             headers=(["Content-Type", "application/json"],))
+            with open("data/all.json", "r") as j:
                 self.write_str(j.read())
 
-        else:
+        def _search():
+            qdict = urllib.parse.parse_qs(url.query)
+            search_query = qdict.get("query")
+            if search_query in (None, ""):
+                self.set_headers(406)
+                self.write_json_error(f"GET /search: requires ?query=<query>")
+                return
+            print(f"query was {search_query}")
+            self.set_headers(200,
+                             headers=(["Content-Type", "application/json"],))
+            with open("data/all.json", "r") as j:
+                self.write_str(j.read())
+
+        def _unknown():
             self.set_headers(404)
             self.write_json_error(f"GET /{endpoint}: 404 Not Found")
+
+        {
+            "favicon.ico":  _favicon,
+            "all":          _all,
+            "search":       _search,
+        }.get(endpoint, _unknown)()
+
+    def do_POST(self):
+        length = int(self.headers["content-length"])
+
+        msg_bytes = self.rfile.read(length)
+        msg_str = str(msg_bytes, "utf-8")
+        print(msg_str)
+
+        self.set_headers(400)
+        self.write_json_error('NotImplemented')
 
     def do_OPTIONS(self):
         '''

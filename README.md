@@ -6,7 +6,7 @@ A handheld scanner for potatoes could be simply done with consumer smartphone ha
 
 - there's no reason to "ship" each potato's ID with it individually -- the UIDs are database side and don't need to be literally attached to each potato itself
 - any lot or container of potatoes could be associated (in the database) with the potato UIDs, and their combined checksum as the lot/container's UID
-- pigeonholing: how does git not run out of hash space, how do I avoid it? hash( hash(a) ++ hash(b) ++ hash(c) ) == hash( hash(a') ++ hash(b) ++ hash(c) )
+- pigeonholing: how does git not run out of hash space, how do I avoid it? hash( hash(a) ++ hash(b) ++ hash(c) ) == `hash( hash(a') ++ hash(b) ++ hash(c)` )
 - error-correction and data-filling analysis allows a potato's identity to be recognised even after damage / cutting / breaking
 - (extra credit: sequential identity tagging equipment on harvesting equipment could allow tracking dirty potatoes to the square foot from which they were harvested)
 

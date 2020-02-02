@@ -4,24 +4,29 @@
   "title": "An identifiable Potato object",
   "description": "",
 
-  "definitions": {},
+  "definitions": {
+    "id": { "type": "string" },
 
-  "type": "object",
-  "additionalProperties": false,
-  "properties": {
     "evident": {
       "type": "object",
       "additionalProperties": false,
+      "required": ["mass", "volume", "introduced"],
       "properties": {
         "mass": { "type": "number" },
         "volume": { "type": "number" },
         "introduced": {
-          "where": { "type": "number" },
-          "where": { "type": "number" }
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["where", "when"],
+          "properties": {
+            "where": { "type": "number" },
+            "when": { "type": "number" }
+          }
         },
         "3d": {
           "type": "object",
           "additionalProperties": false,
+          "required": ["image", "heightmap"],
           "properties": {
             "image": { "type": "string" },
             "heightmap": { "type": "string" }
@@ -33,12 +38,37 @@
     "emergent": {
       "type": "object",
       "additionalProperties": false,
+      "required": ["density", "variety", "size", "grade"],
       "properties": {
         "density": { "type": "number" },
-        "variety": { "type": "string", "enum": ["R", "W", "Y", "U", "F", "Q", "S"] },
-        "color": { "type": ["string", "null"] },
-        "size": { "type": "string", "enum": ["C", "A", "B", "E", "S", "M", "L"] },
+        "variety": { "type": "string", "enum": ["red", "white", "yellow", "russet", "fingerling", "queen_anne", "sweet"] },
+        "color": { "type": "string" },
+        "size": { "type": "string", "enum": ["chef", "A", "B", "creamer", "small", "medium", "large"] },
         "grade": { "type": "string", "enum": ["1", "C", "2", "3"] }
+      }
+    }
+
+  },
+
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "evident", "emergent", "history"],
+  "properties": {
+    "id": { "$ref": "#/definitions/id" },
+    "evident": { "$ref": "#/definitions/evident" },
+    "emergent": { "$ref": "#/definitions/emergent" },
+
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "evident", "emergent"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "#/definitions/id" },
+          "evident": { "$ref": "#/definitions/evident" },
+          "emergent": { "$ref": "#/definitions/emergent" }
+        }
       }
     }
   }
