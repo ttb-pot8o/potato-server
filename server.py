@@ -12,16 +12,16 @@ import sys
 import urllib
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from socketserver import ThreadingMixIn
+import re
 import coloredlogs
-import redis
 
 
 HTTP_PORT  = 9000
 REDIS_PORT = 6379
 ALLOW_FRONTEND_DOMAINS = [
-    "http://localhost:" + str(HTTP_PORT),
-    "http://localhost:3000",
-    "https://ttb-pot8o.github.io"
+    re.compile(r"^(?:http:\/\/)localhost:" + str(HTTP_PORT) + '$'),
+    re.compile(r"^(?:http:\/\/)localhost:3000$"),
+    re.compile(r"^(?:https:\/\/)ttb-pot8o\.github\.io")
 ]
 
 
@@ -53,7 +53,7 @@ class Server(BaseHTTPRequestHandler):
         '''
         http_origin = self.headers["origin"]
         print(http_origin)
-        if http_origin in ALLOW_FRONTEND_DOMAINS:
+        if any(map(lambda r: r.match(http_origin), ALLOW_FRONTEND_DOMAINS)):
             self.send_header("Access-Control-Allow-Origin", http_origin)
 
     def write_str(self, data):
@@ -154,7 +154,7 @@ class Server(BaseHTTPRequestHandler):
 
         self.send_header(
             "Access-Control-Allow-Methods",
-            "HEAD,GET,OPTIONS"
+            "HEAD,GET,POST,OPTIONS"
         )
         # self.send_header("Accept", "application/json")
 
@@ -274,10 +274,7 @@ def run(
     http_address = ("", http_port)
     httpd = server_class(http_address, handler_class)
 
-    redisd = redis.Redis(host='localhost', port=redis_port, db=0)
-
     logger.info("Starting HTTP on port {}...".format(http_port))
-
 
     httpd.serve_forever()
 

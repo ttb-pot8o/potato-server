@@ -1,1 +1,222 @@
-[{"history": [], "id": "63ddabc8fe2bde0ec0f6df2260b60f5cdd553beaaa271619a21b66eac3cf3423", "evident": {"mass": 1038.5386796077403, "volume": 48.30055828605073, "introduced": {"when": 8808273715, "where": 14}, "3d": {"image": "(base64)", "heightmap": "(base64)"}}, "emergent": {"density": 21.501587485949862, "variety": "yellow", "size": "A", "grade": "3"}}, {"history": [], "id": "945b109a7e392a2427ec811ec7f60cca0627b6018c2130a02106ac6bc9eb4465", "evident": {"mass": 1932.915163037404, "volume": 261.3173222403662, "introduced": {"when": 40419311, "where": 27}, "3d": {"image": "(base64)", "heightmap": "(base64)"}}, "emergent": {"density": 7.3968122222661545, "variety": "red", "size": "B", "grade": "C"}}, {"history": [], "id": "1f0507a6a3f111babc807681d2236c4c205e1d2f39a9e976249ca54ee8525bae", "evident": {"mass": 1072.8553031782003, "volume": 193.292894997511, "introduced": {"when": 5040986243, "where": 42}, "3d": {"image": "(base64)", "heightmap": "(base64)"}}, "emergent": {"density": 5.550412513569189, "variety": "russet", "size": "B", "grade": "1"}}, {"history": [], "id": "9731fb71fbf49710693bcb39c33813564dd78a1155bd1d4c06671368607115aa", "evident": {"mass": 652.063798387175, "volume": 1145.9772882623022, "introduced": {"when": 8263883767, "where": 17}, "3d": {"image": "(base64)", "heightmap": "(base64)"}}, "emergent": {"density": 0.5690023747119187, "variety": "sweet", "size": "large", "grade": "2"}}, {"history": [], "id": "8afdd2bbe9dc2ce4f0bf18cafa8a08fb1654a00fb362aecbc7fd420e383e955b", "evident": {"mass": 2040.4663511732751, "volume": 656.0947615760839, "introduced": {"when": 9086682787, "where": 2}, "3d": {"image": "(base64)", "heightmap": "(base64)"}}, "emergent": {"density": 3.1100177454116937, "variety": "queen_anne", "size": "large", "grade": "3"}}, {"history": [], "id": "ad7a14e9aab22034dc56ef0ae8c6e43cadb99f05a376a6bf2c07c6eacd01249b", "evident": {"mass": 1297.4749343196354, "volume": 1628.608981929032, "introduced": {"when": 9060316376, "where": 11}, "3d": {"image": "(base64)", "heightmap": "(base64)"}}, "emergent": {"density": 0.7966767644759151, "variety": "fingerling", "size": "small", "grade": "C"}}, {"history": [], "id": "72558761d1a07fe7fd4384a05476bce3f2852c990453cd5fac5d073f0c58fdd0", "evident": {"mass": 1180.1827620195722, "volume": 168.18122628255438, "introduced": {"when": 5148641315, "where": 13}, "3d": {"image": "(base64)", "heightmap": "(base64)"}}, "emergent": {"density": 7.017327606095556, "variety": "sweet", "size": "creamer", "grade": "1"}}, {"history": [], "id": "21ef146bf81a3964ffca62612cd1e146a606dd62d39b51953439d272689c27a9", "evident": {"mass": 1623.3562633010495, "volume": 443.8446717205242, "introduced": {"when": 1158828555, "where": 9}, "3d": {"image": "(base64)", "heightmap": "(base64)"}}, "emergent": {"density": 3.657487329989237, "variety": "white", "size": "creamer", "grade": "2"}}, {"history": [], "id": "01a45763a4935c3a64c56396d10d678437aaa44f621619c4176e930e27020e8d", "evident": {"mass": 1172.0489304629473, "volume": 834.7390146845595, "introduced": {"when": 9875741431, "where": 45}, "3d": {"image": "(base64)", "heightmap": "(base64)"}}, "emergent": {"density": 1.4040902723420137, "variety": "sweet", "size": "large", "grade": "1"}}, {"history": [], "id": "106a7f67c22b54f3c8f85efefb3e353347eba6e7ba56d5c440bdf45f85d12764", "evident": {"mass": 498.36555907622414, "volume": 371.0550868421589, "introduced": {"when": 2162621946, "where": 28}, "3d": {"image": "(base64)", "heightmap": "(base64)"}}, "emergent": {"density": 1.34310396690026, "variety": "sweet", "size": "chef", "grade": "C"}}]
+[
+  {
+    "history": [],
+    "id": "63ddabc8fe2bde0ec0f6df2260b60f5cdd553beaaa271619a21b66eac3cf3423",
+    "evident": {
+      "mass": 1038.5386796077403,
+      "volume": 48.30055828605073,
+      "introduced": {
+        "when": 8808273715,
+        "where": 14
+      },
+      "3d": {
+        "image": "(base64)",
+        "heightmap": "(base64)"
+      }
+    },
+    "emergent": {
+      "density": 21.501587485949862,
+      "variety": "yellow",
+      "size": "A",
+      "grade": "3"
+    }
+  },
+  {
+    "history": [],
+    "id": "945b109a7e392a2427ec811ec7f60cca0627b6018c2130a02106ac6bc9eb4465",
+    "evident": {
+      "mass": 1932.915163037404,
+      "volume": 261.3173222403662,
+      "introduced": {
+        "when": 40419311,
+        "where": 27
+      },
+      "3d": {
+        "image": "(base64)",
+        "heightmap": "(base64)"
+      }
+    },
+    "emergent": {
+      "density": 7.3968122222661545,
+      "variety": "red",
+      "size": "B",
+      "grade": "C"
+    }
+  },
+  {
+    "history": [],
+    "id": "1f0507a6a3f111babc807681d2236c4c205e1d2f39a9e976249ca54ee8525bae",
+    "evident": {
+      "mass": 1072.8553031782003,
+      "volume": 193.292894997511,
+      "introduced": {
+        "when": 5040986243,
+        "where": 42
+      },
+      "3d": {
+        "image": "(base64)",
+        "heightmap": "(base64)"
+      }
+    },
+    "emergent": {
+      "density": 5.550412513569189,
+      "variety": "russet",
+      "size": "B",
+      "grade": "1"
+    }
+  },
+  {
+    "history": [],
+    "id": "9731fb71fbf49710693bcb39c33813564dd78a1155bd1d4c06671368607115aa",
+    "evident": {
+      "mass": 652.063798387175,
+      "volume": 1145.9772882623022,
+      "introduced": {
+        "when": 8263883767,
+        "where": 17
+      },
+      "3d": {
+        "image": "(base64)",
+        "heightmap": "(base64)"
+      }
+    },
+    "emergent": {
+      "density": 0.5690023747119187,
+      "variety": "sweet",
+      "size": "large",
+      "grade": "2"
+    }
+  },
+  {
+    "history": [],
+    "id": "8afdd2bbe9dc2ce4f0bf18cafa8a08fb1654a00fb362aecbc7fd420e383e955b",
+    "evident": {
+      "mass": 2040.4663511732751,
+      "volume": 656.0947615760839,
+      "introduced": {
+        "when": 9086682787,
+        "where": 2
+      },
+      "3d": {
+        "image": "(base64)",
+        "heightmap": "(base64)"
+      }
+    },
+    "emergent": {
+      "density": 3.1100177454116937,
+      "variety": "queen_anne",
+      "size": "large",
+      "grade": "3"
+    }
+  },
+  {
+    "history": [],
+    "id": "ad7a14e9aab22034dc56ef0ae8c6e43cadb99f05a376a6bf2c07c6eacd01249b",
+    "evident": {
+      "mass": 1297.4749343196354,
+      "volume": 1628.608981929032,
+      "introduced": {
+        "when": 9060316376,
+        "where": 11
+      },
+      "3d": {
+        "image": "(base64)",
+        "heightmap": "(base64)"
+      }
+    },
+    "emergent": {
+      "density": 0.7966767644759151,
+      "variety": "fingerling",
+      "size": "small",
+      "grade": "C"
+    }
+  },
+  {
+    "history": [],
+    "id": "72558761d1a07fe7fd4384a05476bce3f2852c990453cd5fac5d073f0c58fdd0",
+    "evident": {
+      "mass": 1180.1827620195722,
+      "volume": 168.18122628255438,
+      "introduced": {
+        "when": 5148641315,
+        "where": 13
+      },
+      "3d": {
+        "image": "(base64)",
+        "heightmap": "(base64)"
+      }
+    },
+    "emergent": {
+      "density": 7.017327606095556,
+      "variety": "sweet",
+      "size": "creamer",
+      "grade": "1"
+    }
+  },
+  {
+    "history": [],
+    "id": "21ef146bf81a3964ffca62612cd1e146a606dd62d39b51953439d272689c27a9",
+    "evident": {
+      "mass": 1623.3562633010495,
+      "volume": 443.8446717205242,
+      "introduced": {
+        "when": 1158828555,
+        "where": 9
+      },
+      "3d": {
+        "image": "(base64)",
+        "heightmap": "(base64)"
+      }
+    },
+    "emergent": {
+      "density": 3.657487329989237,
+      "variety": "white",
+      "size": "creamer",
+      "grade": "2"
+    }
+  },
+  {
+    "history": [],
+    "id": "01a45763a4935c3a64c56396d10d678437aaa44f621619c4176e930e27020e8d",
+    "evident": {
+      "mass": 1172.0489304629473,
+      "volume": 834.7390146845595,
+      "introduced": {
+        "when": 9875741431,
+        "where": 45
+      },
+      "3d": {
+        "image": "(base64)",
+        "heightmap": "(base64)"
+      }
+    },
+    "emergent": {
+      "density": 1.4040902723420137,
+      "variety": "sweet",
+      "size": "large",
+      "grade": "1"
+    }
+  },
+  {
+    "history": [],
+    "id": "106a7f67c22b54f3c8f85efefb3e353347eba6e7ba56d5c440bdf45f85d12764",
+    "evident": {
+      "mass": 498.36555907622414,
+      "volume": 371.0550868421589,
+      "introduced": {
+        "when": 2162621946,
+        "where": 28
+      },
+      "3d": {
+        "image": "(base64)",
+        "heightmap": "(base64)"
+      }
+    },
+    "emergent": {
+      "density": 1.34310396690026,
+      "variety": "sweet",
+      "size": "chef",
+      "grade": "C"
+    }
+  }
+]
